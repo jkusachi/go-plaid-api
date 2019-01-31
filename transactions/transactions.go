@@ -29,15 +29,5 @@ func GetTransactions(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-
-
-	var f interface{}
-	jsonErr := json.Unmarshal(body, &f)
-	if jsonErr != nil {
-		log.Fatal(jsonErr)
-	}
-	m := f.(map[string]interface{})
-
-	output, err := json.Marshal(m)
-	w.Write(output)
+	w.Write(body)
 }

@@ -23,15 +23,7 @@ func AuthGet(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	var f interface{}
-	jsonErr := json.Unmarshal(body, &f)
-	if jsonErr != nil {
-		log.Fatal(jsonErr)
-	}
-	m := f.(map[string]interface{})
-
-	output, err := json.Marshal(m)
-	w.Write(output)
+	w.Write(body)
 }
 
 func GetAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -42,5 +34,23 @@ func GetAccessToken(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(t.PublicToken)
+	fmt.Printf("%s", os.Getenv("SECRET"))
+
+	url := fmt.Sprintf("%s%s", os.Getenv("API_HOST"), "/item/public_token/exchange")
+	payload := map[string]interface{}{
+		"client_id": os.Getenv("CLIENT_ID"),
+		"secret": os.Getenv("SECRET"),
+		"public_token": t.PublicToken,
+	}
+
+	jsonBody, err := json.Marshal(payload)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	resp, err := common.MakeJSONPostRequest(url, jsonBody)
+	if err != nil {
+		log.Fatal(err)
+	}
+	w.Write(resp)
 }
