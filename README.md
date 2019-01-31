@@ -11,10 +11,11 @@ You will need to enter in your own values and then rename the file to `.env`
 
 ### Supported Endpoints
 
-`/`  
+`/`
 Test Endpoint
 
-`POST /get_access_token`
+`POST /get_access_token`  
+Retrieves an access token
 
 `POST /auth/get`
 
