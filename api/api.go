@@ -15,16 +15,7 @@ func healthcheck(w http.ResponseWriter, r *http.Request) {
 
 func Setup(r *mux.Router) {
 
-	// r.HandleFunc("/", healthcheck)
-
-	// This will serve files under http://localhost:8000/static/<filename>
-	// fs := http.FileServer(http.Dir("static"));
-	// r.PathPrefix("/static/").Handler(fs)
-
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
-
-
-
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./client/build/")))
 
 	r.HandleFunc("/get_access_token", auth.GetAccessToken)
 	r.HandleFunc("/auth/get", auth.AuthGet)

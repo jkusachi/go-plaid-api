@@ -1,0 +1,35 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 22px;
+}
+
+.znav-content {
+  margin-bottom: 0;
+}
+
+.headline {
+  color: #fff;
+  padding: 2rem 0px 0 10rem;
+}
+
+.headline h1 {
+  font-size: 5rem;
+}
+
+.headline .desc {
+  font-size: 1.5rem;
+  max-width: 30%;
+}
+
+.top {
+  background-image: url(https://images.unsplash.com/photo-1472553384749-8596bacb90c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80);
+  background-position: center center;
+  background-size: 1150px;
+  height: 800px;
+  background-size: cover;
+  padding-top: 110px;
+}
