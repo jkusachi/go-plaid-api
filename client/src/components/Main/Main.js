@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Begin from "../Begin/Begin";
 import ConnectionSuccess from "../ConnectionSuccess/ConnectionSuccess";
 import Verify from "../Verify/Verify";
+import Report from "../Report/Report";
 
 import "./Main.css";
 
@@ -14,10 +15,10 @@ class Main extends Component {
     access_token: null,
     item_id: null,
     request_id: null,
-    step: "VERIFY",
-    access_token: "access-sandbox-adeabee9-b9e8-41e7-b076-877348de027d",
-    item_id: "LBDJkjq8VaHgL11kJlzeTjbrLNPXvriPMX5Da",
-    request_id: "M3NQOl3GyAufmaq"
+    step: "BEGIN"
+    // access_token: "access-sandbox-adeabee9-b9e8-41e7-b076-877348de027d",
+    // item_id: "LBDJkjq8VaHgL11kJlzeTjbrLNPXvriPMX5Da",
+    // request_id: "M3NQOl3GyAufmaq"
   };
 
   handleSuccess = public_token => {
@@ -66,6 +67,7 @@ class Main extends Component {
           />
         )}
         {step === "VERIFY" && <Verify access_token={access_token} />}
+        {step === "REPORT" && <Report access_token={access_token} />}
       </main>
     );
   }

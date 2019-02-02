@@ -56,7 +56,7 @@ export default class Verify extends Component {
             <div className="item">Amount</div>
           </div>
           {transactions.slice(0, 20).map(t => (
-            <div className="row">
+            <div className="row" key={t.transaction_id}>
               <div className="item">{t.date}</div>
               <div className="item uppercase bold">{t.name}</div>
               <div className="item italic">{t.category.join(", ")}</div>
@@ -66,20 +66,19 @@ export default class Verify extends Component {
         </div>
 
         <div className="super-padded-button">
-          <button className="zsg-button_alt" onClick={onConnect}>
-            Yes, this is correct!
-          </button>
-
           <button
             className="zsg-button"
             onClick={onConnect}
             style={{
-              marginLeft: "1rem",
+              marginRight: "1rem",
               background: "red",
               color: "white"
             }}
           >
             No, these is not my most recent history
+          </button>
+          <button className="zsg-button_alt" onClick={onConnect}>
+            Yes, this is correct!
           </button>
         </div>
       </React.Fragment>
