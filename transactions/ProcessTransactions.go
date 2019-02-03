@@ -63,7 +63,6 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 
 	data, _ := json.Marshal(accountData)
 	w.Write(data)
-	// w.Write(body)
 
 }
 
