@@ -78,3 +78,9 @@ type PlaidCustomAccount struct {
 	Account      PlaidAccount       `json:"account"`
 	Transactions []PlaidTransaction `json:"transactions"`
 }
+
+type CustomResponse struct {
+	Accounts       []PlaidCustomAccount `json:"accounts"`
+	TypeCounts     interface{}          `json:"type_counts"`
+	CategoryCounts interface{}          `json:"category_counts"`
+}

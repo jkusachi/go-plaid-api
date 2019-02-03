@@ -41,7 +41,9 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &f)
 
 	accountData := []PlaidCustomAccount{}
-	transactionMap := map[string][]PlaidTransaction{}
+	transactionMap := make(map[string][]PlaidTransaction)
+	typeCount := make(map[string]int)
+	categoryCount := make(map[string]int)
 
 	// map account IDs O(n)
 	for _, curAccount := range f.Accounts {
@@ -51,6 +53,12 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 	// iterate through transactions O(n)
 	for _, curTransaction := range f.Transactions {
 		transactionMap[curTransaction.AccountID] = append(transactionMap[curTransaction.AccountID], curTransaction)
+		var transactionType = curTransaction.TransactionType
+		typeCount[transactionType] = typeCount[transactionType] + 1
+
+		var firstCategory = curTransaction.Category[0]
+		categoryCount[firstCategory] = categoryCount[firstCategory] + 1
+
 	}
 
 	// map account O(n)
@@ -61,7 +69,15 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	data, _ := json.Marshal(accountData)
+	// accountData.typeCount = typeCount
+
+	response := CustomResponse{
+		Accounts:       accountData,
+		TypeCounts:     typeCount,
+		CategoryCounts: categoryCount,
+	}
+
+	data, _ := json.Marshal(response)
 	w.Write(data)
 
 }
