@@ -69,3 +69,8 @@ type PlaidTransaction struct {
 	TransactionType        string      `json:"transaction_type"`
 	UnofficialCurrencyCode interface{} `json:"unofficial_currency_code"`
 }
+
+type PlaidCustomAccount struct {
+	Account      PlaidAccount       `json:"account"`
+	Transactions []PlaidTransaction `json:"transactions"`
+}
