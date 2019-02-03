@@ -22,7 +22,7 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 	}
 
 	endDate := time.Now().Format("2006-01-02")
-	startDate := time.Now().AddDate(0, -1, 0).Format("2006-01-02")
+	startDate := time.Now().AddDate(0, -3, 0).Format("2006-01-02")
 	payload := map[string]interface{}{
 		"client_id":    os.Getenv("CLIENT_ID"),
 		"secret":       os.Getenv("SECRET"),
