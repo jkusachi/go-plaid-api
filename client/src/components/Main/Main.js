@@ -24,7 +24,7 @@ class Main extends Component {
   handleSuccess = public_token => {
     axios
       .post("http://localhost:3001/get_access_token", {
-        public_token: public_token
+        public_token
       })
       .then(resp => {
         const { access_token, item_id, request_id } = resp.data;
@@ -43,7 +43,7 @@ class Main extends Component {
     const handler = window.Plaid.create({
       apiVersion: "v2",
       clientName: "Zillow Underwriting",
-      env: "sandbox",
+      env: process.env.REACT_APP_PLAID_ENV,
       product: ["transactions"],
       key: process.env.REACT_APP_PLAID_PUBLIC_KEY,
       // webhook: 'https://your-domain.tld/plaid-webhook',

@@ -34,8 +34,7 @@ export default class Verify extends Component {
 
   render() {
     const { onConnect, accounts } = this.props;
-    const { transactions } = this.state;
-    console.log("transactions\n", transactions);
+    const { transactions = [] } = this.state;
     return (
       <React.Fragment>
         <h1>Please verify the transactions below</h1>
