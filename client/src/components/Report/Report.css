@@ -1,4 +1,6 @@
 .account-report {
+  font-family: Gotham, gotham, Verdana, sans-serif;
+
   background-color: #f6f9fc;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
   padding: 1rem;
@@ -10,12 +12,48 @@
   padding-bottom: 0.5rem;
 }
 
-.report-data {
-  font-family: Gotham, gotham, Verdana, sans-serif;
+.report-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.spending-highlight {
+  background-color: #f6f9fc;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
   font-size: 1.25rem;
+}
+
+.spending-highlight label {
+  font-weight: bold;
+}
+
+.report-data {
+  flex: 2;
+  font-size: 1rem;
   line-height: 2.5rem;
 }
 
 .report-data label {
   font-weight: bold;
+}
+
+.report-risk {
+  flex: 1;
+}
+
+.report-risk-details {
+  font-size: 1rem;
+}
+
+.report-transactions {
+  font-size: 1rem;
+}
+
+.show-btn {
+  background: #0074e4;
+  font-size: 1rem;
+  color: white;
+  margin: 1rem 0;
 }

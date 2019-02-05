@@ -6,6 +6,7 @@ import Begin from "../Begin/Begin";
 import ConnectionSuccess from "../ConnectionSuccess/ConnectionSuccess";
 import Verify from "../Verify/Verify";
 import Report from "../Report/Report";
+import Finish from "../Finish/Finish";
 
 import "./Main.css";
 
@@ -76,7 +77,17 @@ class Main extends Component {
             }}
           />
         )}
-        {step === "REPORT" && <Report access_token={access_token} />}
+        {step === "REPORT" && (
+          <Report
+            access_token={access_token}
+            onContinue={() => {
+              this.setState({
+                step: "FINISH"
+              });
+            }}
+          />
+        )}
+        {step === "FINISH" && <Finish />}
       </main>
     );
   }
