@@ -1,0 +1,21 @@
+.account-report {
+  background-color: #f6f9fc;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.account-report .header {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.report-data {
+  font-family: Gotham, gotham, Verdana, sans-serif;
+  font-size: 1.25rem;
+  line-height: 2.5rem;
+}
+
+.report-data label {
+  font-weight: bold;
+}

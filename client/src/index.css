@@ -24,6 +24,13 @@ code {
   flex: 1;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: Gotham, gotham, Verdana, sans-serif;
+}
+
 .content-main {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,15 +46,20 @@ code {
 }
 
 .table {
+  border-radius: 5px;
   display: table;
   width: 100%;
-  line-height: 2.5rem;
+  line-height: 3rem;
+  background: #f6f9fc;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
 }
 
 .table .header {
   font-weight: bold;
   background: #0072eb;
   color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .table .row {

@@ -1,0 +1,23 @@
+.credit {
+  color: green;
+}
+
+.debit {
+  color: red;
+}
+
+.accounts-list {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.accounts-list .account {
+  background: #f6f9fc;
+  display: block;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 93, 0.1);
+  font-weight: bold;
+}

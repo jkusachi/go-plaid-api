@@ -12,13 +12,13 @@ import "./Main.css";
 class Main extends Component {
   state = {
     // step: "BEGIN",
-    access_token: null,
-    item_id: null,
-    request_id: null,
-    step: "BEGIN"
-    // access_token: "access-sandbox-adeabee9-b9e8-41e7-b076-877348de027d",
-    // item_id: "LBDJkjq8VaHgL11kJlzeTjbrLNPXvriPMX5Da",
-    // request_id: "M3NQOl3GyAufmaq"
+    // access_token: null,
+    // item_id: null,
+    // request_id: null,
+    step: "REPORT",
+    access_token: "access-sandbox-adeabee9-b9e8-41e7-b076-877348de027d",
+    item_id: "LBDJkjq8VaHgL11kJlzeTjbrLNPXvriPMX5Da",
+    request_id: "M3NQOl3GyAufmaq"
   };
 
   handleSuccess = public_token => {
@@ -66,7 +66,16 @@ class Main extends Component {
             }}
           />
         )}
-        {step === "VERIFY" && <Verify access_token={access_token} />}
+        {step === "VERIFY" && (
+          <Verify
+            access_token={access_token}
+            onContinue={() => {
+              this.setState({
+                step: "REPORT"
+              });
+            }}
+          />
+        )}
         {step === "REPORT" && <Report access_token={access_token} />}
       </main>
     );

@@ -95,6 +95,10 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		var spendPercentage float64 = 0
+		if totalIn > 0 {
+			spendPercentage = math.Abs(totalOut / totalIn)
+		}
 		accountData = append(accountData, PlaidCustomAccount{
 			Account:      curAccount,
 			Transactions: curTransactions,
@@ -105,7 +109,7 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 				TransactionsOver200:  transactionsOver200,
 				TotalIn:              totalIn,
 				TotalOut:             totalOut,
-				SpendPercentage:      math.Abs(totalOut / totalIn),
+				SpendPercentage:      spendPercentage,
 			},
 		})
 	}
