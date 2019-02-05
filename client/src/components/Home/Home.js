@@ -26,7 +26,10 @@ class App extends Component {
           </div>
         </div>
 
-        <div className="zsg-content-section sc-dxgOiQ chppGt">
+        <div
+          className="zsg-content-section sc-dxgOiQ chppGt"
+          style={{ marginBottom: 0, paddingBottom: 0 }}
+        >
           <div className="selling-step-wrapper">
             <div className="sc-kpOJdX kAVorH">
               <div className="sc-kGXeez duVHaf">
@@ -36,6 +39,33 @@ class App extends Component {
                   Submit your bank history easy and online. No more printing
                   bank statements at home. Everything is done securely and
                   safely.
+                </p>
+                <span />
+              </div>
+            </div>
+            <svg className="sc-kgoBCf fXJcYd">
+              <line className="mobile" x1="50%" x2="50%" y1="0" y2="100%" />
+              <line className="desktop left" x1="0" x2="0" y1="0" y2="100%" />
+              <line
+                className="desktop right"
+                x1="100%"
+                x2="100%"
+                y1="0"
+                y2="100%"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div className="zsg-content-section sc-dxgOiQ chppGt">
+          <div className="selling-step-wrapper">
+            <div className="sc-kpOJdX kAVorH in-control">
+              <div className="sc-kGXeez duVHaf">
+                <h3>You are in control.</h3>
+                <p>
+                  With the Zillow Underwriting Program, you are in control. You
+                  have full transparency with your loan officer, and can submit
+                  reasons for any transaction anomolies
                 </p>
                 <span />
               </div>
