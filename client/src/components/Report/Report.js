@@ -5,6 +5,12 @@ import n from "numeral";
 import orderBy from "lodash/orderBy";
 import "./Report.css";
 import { stat } from "fs";
+
+import checkmarkImage from "./green-checkmark.png";
+import cautionImage from "./caution.png";
+import questionImage from "./question.png";
+import riskImage from "./risk.png";
+
 export default class Report extends Component {
   state = {
     accounts: [],
@@ -142,14 +148,21 @@ export default class Report extends Component {
                       )}
                       {riskType === "good" && (
                         <div>
+                          <div className="risk-image">
+                            <img src={checkmarkImage} />
+                          </div>
                           <strong>Your Spend Level is Good</strong>
                           <br />
                           This account has spent less than 25% of the money
-                          coming in vs. money coming out.
+                          coming in vs. money coming out. Good Job! Loan
+                          Officers love this!
                         </div>
                       )}
                       {riskType === "problematic" && (
                         <div>
+                          <div className="risk-image">
+                            <img src={cautionImage} width="140" />
+                          </div>
                           <strong>Your Spend Level is Problematic</strong>
                           <br />
                           Unfortunately it looks like you have overspent in
@@ -160,6 +173,9 @@ export default class Report extends Component {
                       )}
                       {riskType === "potential_savings" && (
                         <div>
+                          <div className="risk-image">
+                            <img src={questionImage} width="140" />
+                          </div>
                           <strong>Your Spend Level is Unknown</strong>
                           <br />
                           There doesn't seem to be a lot of transactions for
@@ -169,6 +185,9 @@ export default class Report extends Component {
                       )}
                       {riskType === "high_risk" && (
                         <div>
+                          <div className="risk-image">
+                            <img src={riskImage} width="140" />
+                          </div>
                           <strong>Your Spend Level is High Risk</strong>
                           <br />
                           There are a lot of outgoing transactions, but no money

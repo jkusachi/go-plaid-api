@@ -1,0 +1,56 @@
+.easy-steps {
+  font-size: 1.45rem;
+  margin-top: 4rem;
+}
+
+.begin-steps {
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 25px 0px;
+  background: rgb(255, 255, 255); */
+
+  padding-left: 2rem;
+  /* margin-left: 2rem; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.begin-steps li {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 25px 0px;
+  background: rgb(255, 255, 255);
+  padding: 2rem;
+  margin: 2rem;
+  font-weight: bold;
+  flex: 1;
+  border-radius: 15px;
+}
+
+.begin-steps li:nth-child(1) {
+  font-size: 2rem;
+  background: rgb(54, 121, 255);
+  color: white;
+}
+
+.begin-steps li:nth-child(2) {
+  background: rgb(255, 196, 11);
+  font-size: 2rem;
+  color: white;
+}
+
+.begin-steps li:nth-child(3) {
+  background: rgb(255, 75, 113);
+  font-size: 2rem;
+  color: white;
+}
+
+.begin-steps li:nth-child(4) {
+  background: rgb(75, 222, 91);
+  font-size: 2rem;
+  color: white;
+}
+
+.ready {
+  margin: 2rem 0;
+}
+
+.ready button {
+  margin-top: 2rem;
+}

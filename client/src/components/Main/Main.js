@@ -12,12 +12,12 @@ import "./Main.css";
 
 class Main extends Component {
   state = {
-    // step: "BEGIN",
+    step: "BEGIN",
     access_token: null,
     item_id: null,
-    request_id: null,
-    step: "BEGIN"
-    // access_token: "access-sandbox-3c2fe59f-009b-4beb-a614-dec101927e04",
+    request_id: null
+    // step: "REPORT",
+    // access_token: "access-sandbox-745c16a4-0191-426d-ab43-e6c70b3f8745"
     // item_id: "BGlVvMJXE9FQ1Dol3VrjhN7p6wo3WQfwp5bm4",
     // request_id: "lNI5jKGi64BDmse"
   };
