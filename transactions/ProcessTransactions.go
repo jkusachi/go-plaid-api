@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"time"
@@ -52,6 +53,7 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 
 	// iterate through transactions O(n)
 	for _, curTransaction := range f.Transactions {
+		curTransaction.Amount = curTransaction.Amount * -1
 		transactionMap[curTransaction.AccountID] = append(transactionMap[curTransaction.AccountID], curTransaction)
 		var transactionType = curTransaction.TransactionType
 		typeCount[transactionType] = typeCount[transactionType] + 1
@@ -71,18 +73,39 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 
 	// map account O(n)
 	for _, curAccount := range f.Accounts {
-		total := 0
+		var total float64 = 0
+		transactionsOver1000 := 0
+		transactionsOver200 := 0
+		var totalIn float64 = 0
+		var totalOut float64 = 0
 		curTransactions := transactionMap[curAccount.AccountID]
 		for _, t := range curTransactions {
-			total += t.Amount
+			total += float64(t.Amount)
+			if t.Amount >= 1000 {
+				transactionsOver1000++
+			}
+			if t.Amount >= 200 {
+				transactionsOver200++
+			}
+			if t.Amount > 0 {
+				totalIn += float64(t.Amount)
+			}
+			if t.Amount < 0 {
+				totalOut += float64(t.Amount)
+			}
 		}
 
 		accountData = append(accountData, PlaidCustomAccount{
 			Account:      curAccount,
 			Transactions: curTransactions,
 			Stats: Stats{
-				Total:   total,
-				Average: float64(total) / float64(len(curTransactions)),
+				Total:                total,
+				Average:              float64(total) / float64(len(curTransactions)),
+				TransactionsOver1000: transactionsOver1000,
+				TransactionsOver200:  transactionsOver200,
+				TotalIn:              totalIn,
+				TotalOut:             totalOut,
+				SpendPercentage:      math.Abs(totalOut / totalIn),
 			},
 		})
 	}

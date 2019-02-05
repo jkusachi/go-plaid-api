@@ -42,7 +42,7 @@ type PlaidItem struct {
 type PlaidTransaction struct {
 	AccountID       string      `json:"account_id"`
 	AccountOwner    interface{} `json:"account_owner"`
-	Amount          int         `json:"amount"`
+	Amount          float64     `json:"amount"`
 	Category        []string    `json:"category"`
 	CategoryID      string      `json:"category_id"`
 	Date            string      `json:"date"`
@@ -75,8 +75,13 @@ type PlaidTransaction struct {
 }
 
 type Stats struct {
-	Average float64 `json:"average"`
-	Total   int     `json:"total"`
+	Average              float64 `json:"average"`
+	Total                float64 `json:"total"`
+	TransactionsOver1000 int     `json:"transactions_over_1000"`
+	TransactionsOver200  int     `json:"transactions_over_200"`
+	TotalIn              float64 `json:"total_in"`
+	TotalOut             float64 `json:"total_out"`
+	SpendPercentage      float64 `json:"spend_percentage"`
 }
 
 type PlaidCustomAccount struct {
