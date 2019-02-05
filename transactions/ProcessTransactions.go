@@ -55,21 +55,37 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 		transactionMap[curTransaction.AccountID] = append(transactionMap[curTransaction.AccountID], curTransaction)
 		var transactionType = curTransaction.TransactionType
 		typeCount[transactionType] = typeCount[transactionType] + 1
-
-		var firstCategory = curTransaction.Category[0]
-		categoryCount[firstCategory] = categoryCount[firstCategory] + 1
+		firstCategory := curTransaction.Category[0]
+		category := firstCategory
+		if len(curTransaction.Category) > 1 {
+			secondCategory := curTransaction.Category[1]
+			categoryCount[secondCategory] = categoryCount[secondCategory] + 1
+		}
+		if len(curTransaction.Category) > 2 {
+			thirdCategory := curTransaction.Category[2]
+			categoryCount[thirdCategory] = categoryCount[thirdCategory] + 1
+		}
+		categoryCount[category] = categoryCount[category] + 1
 
 	}
 
 	// map account O(n)
 	for _, curAccount := range f.Accounts {
+		total := 0
+		curTransactions := transactionMap[curAccount.AccountID]
+		for _, t := range curTransactions {
+			total += t.Amount
+		}
+
 		accountData = append(accountData, PlaidCustomAccount{
 			Account:      curAccount,
-			Transactions: transactionMap[curAccount.AccountID],
+			Transactions: curTransactions,
+			Stats: Stats{
+				Total:   total,
+				Average: float64(total) / float64(len(curTransactions)),
+			},
 		})
 	}
-
-	// accountData.typeCount = typeCount
 
 	response := CustomResponse{
 		Accounts:       accountData,

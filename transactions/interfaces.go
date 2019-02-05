@@ -74,9 +74,15 @@ type PlaidTransaction struct {
 	UnofficialCurrencyCode interface{} `json:"unofficial_currency_code"`
 }
 
+type Stats struct {
+	Average float64 `json:"average"`
+	Total   int     `json:"total"`
+}
+
 type PlaidCustomAccount struct {
 	Account      PlaidAccount       `json:"account"`
 	Transactions []PlaidTransaction `json:"transactions"`
+	Stats        Stats              `json:"stats"`
 }
 
 type CustomResponse struct {
