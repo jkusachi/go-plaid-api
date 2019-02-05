@@ -17,14 +17,14 @@ class Main extends Component {
     // item_id: null,
     // request_id: null,
     step: "REPORT",
-    access_token: "access-sandbox-adeabee9-b9e8-41e7-b076-877348de027d",
-    item_id: "LBDJkjq8VaHgL11kJlzeTjbrLNPXvriPMX5Da",
-    request_id: "M3NQOl3GyAufmaq"
+    access_token: "access-sandbox-3c2fe59f-009b-4beb-a614-dec101927e04",
+    item_id: "BGlVvMJXE9FQ1Dol3VrjhN7p6wo3WQfwp5bm4",
+    request_id: "lNI5jKGi64BDmse"
   };
 
   handleSuccess = public_token => {
     axios
-      .post("http://localhost:3001/get_access_token", {
+      .post(`${process.env.REACT_APP_API_URL}/get_access_token`, {
         public_token
       })
       .then(resp => {

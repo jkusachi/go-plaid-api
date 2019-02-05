@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import cx from "classnames";
 import axios from "axios";
 import n from "numeral";
+import orderBy from "lodash/orderBy";
 import "./Report.css";
 import { stat } from "fs";
 export default class Report extends Component {
   state = {
     accounts: [],
     show: {},
-    type_counts: {}
+    type_counts: {},
+    category_counts: []
   };
   componentDidMount() {
     const { access_token } = this.props;
     axios
-      .post("http://localhost:3001/transactions/process", {
+      .post(`${process.env.REACT_APP_API_URL}/transactions/process`, {
         client_id: process.env.REACT_APP_CLIENT_ID,
         secret: process.env.REACT_APP_SECRET,
         access_token
@@ -25,7 +27,7 @@ export default class Report extends Component {
 
   render() {
     const { onContinue } = this.props;
-    const { accounts, show, type_counts } = this.state;
+    const { accounts, show, type_counts, category_counts } = this.state;
 
     return (
       <React.Fragment>
@@ -46,6 +48,18 @@ export default class Report extends Component {
           <div className="spending-highlight">
             <label>Made Online: {type_counts.digital || 0}</label>
             <p>Rransactions that were made online</p>
+          </div>
+        </div>
+
+        <div className="spending-highlights">
+          <h2>Top Spending Categories</h2>
+
+          <div className="spending-categories">
+            {orderBy(category_counts, "count", "desc").map(cat => (
+              <div className="category">
+                {cat.category_name} ({cat.count})
+              </div>
+            ))}
           </div>
         </div>
 

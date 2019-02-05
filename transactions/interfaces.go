@@ -90,8 +90,13 @@ type PlaidCustomAccount struct {
 	Stats        Stats              `json:"stats"`
 }
 
+type CategoryCount struct {
+	CategoryName string `json:"category_name"`
+	Count        int    `json:"count"`
+}
+
 type CustomResponse struct {
 	Accounts       []PlaidCustomAccount `json:"accounts"`
 	TypeCounts     interface{}          `json:"type_counts"`
-	CategoryCounts interface{}          `json:"category_counts"`
+	CategoryCounts []CategoryCount      `json:"category_counts"`
 }

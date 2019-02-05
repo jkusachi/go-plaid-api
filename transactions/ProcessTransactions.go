@@ -44,7 +44,8 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 	accountData := []PlaidCustomAccount{}
 	transactionMap := make(map[string][]PlaidTransaction)
 	typeCount := make(map[string]int)
-	categoryCount := make(map[string]int)
+	categoryCountMap := make(map[string]int)
+	categoryCount := []CategoryCount{}
 
 	// map account IDs O(n)
 	for _, curAccount := range f.Accounts {
@@ -58,16 +59,69 @@ func ProcessTransactions(w http.ResponseWriter, r *http.Request) {
 		var transactionType = curTransaction.TransactionType
 		typeCount[transactionType] = typeCount[transactionType] + 1
 		firstCategory := curTransaction.Category[0]
-		category := firstCategory
+		// category := firstCategory
 		if len(curTransaction.Category) > 1 {
 			secondCategory := curTransaction.Category[1]
-			categoryCount[secondCategory] = categoryCount[secondCategory] + 1
+			categoryCountMap[secondCategory] = categoryCountMap[secondCategory] + 1
+			foundIndex := 0
+			for idx, i := range categoryCount {
+				if i.CategoryName == secondCategory {
+					foundIndex = idx
+				}
+			}
+			if foundIndex != 0 {
+				categoryCount[foundIndex] = CategoryCount{
+					CategoryName: secondCategory,
+					Count:        categoryCountMap[secondCategory] + 1,
+				}
+			} else {
+				categoryCount = append(categoryCount, CategoryCount{
+					CategoryName: secondCategory,
+					Count:        1,
+				})
+			}
+
 		}
 		if len(curTransaction.Category) > 2 {
 			thirdCategory := curTransaction.Category[2]
-			categoryCount[thirdCategory] = categoryCount[thirdCategory] + 1
+
+			foundIndex := 0
+			for idx, i := range categoryCount {
+				if i.CategoryName == thirdCategory {
+					foundIndex = idx
+				}
+			}
+			if foundIndex != 0 {
+				categoryCount[foundIndex] = CategoryCount{
+					CategoryName: thirdCategory,
+					Count:        categoryCountMap[thirdCategory] + 1,
+				}
+			} else {
+				categoryCount = append(categoryCount, CategoryCount{
+					CategoryName: thirdCategory,
+					Count:        1,
+				})
+			}
+
 		}
-		categoryCount[category] = categoryCount[category] + 1
+
+		firstCatIndex := 0
+		for idx, i := range categoryCount {
+			if i.CategoryName == firstCategory {
+				firstCatIndex = idx
+			}
+		}
+		if firstCatIndex != 0 {
+			categoryCount[firstCatIndex] = CategoryCount{
+				CategoryName: firstCategory,
+				Count:        categoryCountMap[firstCategory] + 1,
+			}
+		} else {
+			categoryCount = append(categoryCount, CategoryCount{
+				CategoryName: firstCategory,
+				Count:        1,
+			})
+		}
 
 	}
 
