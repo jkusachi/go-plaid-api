@@ -1,7 +1,8 @@
 # Plaid API
 
-**IMPORTANT**
-This is a learning excercise for writing code in Go Lang. Do NOT use this for anything important
+## Disclaimer!
+
+This was built in 1-2 days having no prior golang knowledge. The React components here are a mess. Im sure the golang is too.
 
 ### Requirements to run
 
